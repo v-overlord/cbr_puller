@@ -1,0 +1,49 @@
+version: '3.6'
+
+services:
+  cbr_puller_cli:
+    build: ./php
+    container_name: cbr_puller_cli
+    volumes:
+      - ../:/app
+      - ../data/php/conf.d/docker-php-ext-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+    restart: unless-stopped
+    env_file: ../.env
+    depends_on:
+      - cbr_puller_redis
+
+  cbr_puller_redis:
+    image: "redis:alpine"
+    container_name: cbr_puller_redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_cache:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 1s
+      timeout: 2s
+      retries: 10
+    restart: unless-stopped
+
+  cbr_puller_zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: cbr_puller_zookeeper
+    ports:
+      - '${ZOOKEEPER_PORT}:2181'
+
+  cbr_puller_kafka:
+    image: wurstmeister/kafka
+    container_name: cbr_puller_kafka
+    ports:
+      - '${KAFKA_PORT}:9092'
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: cbr_puller_kafka
+      KAFKA_CREATE_TOPICS: "test:1:1"
+      KAFKA_ZOOKEEPER_CONNECT: "${ZOOKEEPER_HOST}:${ZOOKEEPER_PORT}"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  redis_cache:
+    driver: local

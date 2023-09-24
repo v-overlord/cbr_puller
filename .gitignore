@@ -1,0 +1,6 @@
+data/redis/
+var/
+vendor/
+.idea/
+.env
+.phpunit.result.cache

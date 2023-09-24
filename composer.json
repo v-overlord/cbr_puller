@@ -1,0 +1,44 @@
+{
+  "name": "v-overlord/cbr-puller",
+  "description": "CBRPuller: Retrieve insightful quotes from The Central Bank of the Russian Federation",
+  "type": "project",
+  "license": "proprietary",
+  "scripts": {
+    "test": "php ./vendor/phpunit/phpunit/phpunit --verbose ./tests/"
+  },
+  "require": {
+    "ext-simplexml": "*",
+    "symfony/console": "^6.3",
+    "symfony/validator": "^6.3",
+    "symfony/intl": "^6.3",
+    "symfony/http-client": "^6.3",
+    "monolog/monolog": "^3.4",
+    "symfony/dependency-injection": "^6.3",
+    "symfony/config": "^6.3",
+    "symfony/http-kernel": "^6.3",
+    "symfony/yaml": "^6.3",
+    "vlucas/phpdotenv": "^5.5",
+    "ext-redis": "*",
+    "bramus/monolog-colored-line-formatter": "^3.1",
+    "ext-libxml": "*",
+    "ext-pcntl": "*"
+  },
+  "autoload": {
+    "files": [
+      "app/AppKernel.php"
+    ],
+    "psr-4": {
+      "CbrPuller\\": "src"
+    }
+  },
+  "authors": [
+    {
+      "name": "V Overlord"
+    }
+  ],
+  "require-dev": {
+    "kwn/php-rdkafka-stubs": "^2.2",
+    "symfony/test-pack": "^1.1",
+    "phpunit/phpunit": "^9.6"
+  }
+}
