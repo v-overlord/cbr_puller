@@ -173,5 +173,5 @@ Run `exec/exec.sh composer run test`.
  Q: I'm having trouble running the scripts.  
  A: `chmod u+x exec/...` should help.
 
- Q: I'd like to debug.
+ Q: I'd like to debug.  
  A: To make the changes, you need to modify the files `./data/php/conf.d/docker-php-ext-xdebug.ini` and `./exec/php/Dockerfile`, and then rebuild the containers.

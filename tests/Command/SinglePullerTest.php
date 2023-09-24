@@ -85,7 +85,7 @@ class SinglePullerTest extends TestCase
         "date": "01\/01\/2020",
         "pair": "RUR\/USD",
         "rate": 0.02381,
-        "rateDifference": -0.0005799999999999972,
+        "rateDifference": -0.00058,
         "swappedPair": "USD\/RUR",
         "swappedPairRate": 42,
         "swappedPairRateDifference": 1
